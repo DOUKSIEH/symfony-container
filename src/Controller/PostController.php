@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\PostRepository;
+use App\Helpers\MarkdownHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -11,12 +11,13 @@ class PostController extends AbstractController
     /**
      * @Route("/", name="post")
      */
-    public function index()
+    public function index(MarkdownHelper $parser)
     {
-        $posts = [];
+       
 
         return $this->render('post/index.html.twig', [
-            'posts' => $posts
+            
+            'posts' => $parser->getParse()
         ]);
     }
 }
